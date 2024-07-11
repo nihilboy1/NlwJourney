@@ -1,13 +1,12 @@
 package com.nihil.planner.entities;
 
-import com.nihil.planner.payloads.TripRequest;
+import com.nihil.planner.dtos.TripReqPayload;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -41,15 +40,13 @@ public class Trip{
     @Column(name = "owner_email", nullable = false)
     private String ownerEmail;
 
-    public Trip(TripRequest tripRequest){
+    public Trip(TripReqPayload tripRequest){
         this.destination = tripRequest.destination();
         this.isConfirmed = false;
         this.ownerEmail = tripRequest.owner_email();
         this.ownerName = tripRequest.owner_name();
         this.startsAt = LocalDateTime.parse(tripRequest.starts_at(), DateTimeFormatter.ISO_DATE_TIME);
         this.endsAt = LocalDateTime.parse(tripRequest.ends_at(), DateTimeFormatter.ISO_DATE_TIME);
-
-
     }
 
 }

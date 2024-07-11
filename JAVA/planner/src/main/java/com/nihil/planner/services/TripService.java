@@ -1,5 +1,6 @@
 package com.nihil.planner.services;
 
+import com.nihil.planner.dtos.TripId;
 import com.nihil.planner.entities.Trip;
 import com.nihil.planner.repositories.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,9 @@ public class TripService{
     @Autowired
     TripRepository tripRepository;
 
-    public void create(Trip trip){
+    public TripId create(Trip trip){
         tripRepository.save(trip);
+        return new TripId(trip.getId());
     }
 
     public Optional<Trip> read(UUID tripId){
