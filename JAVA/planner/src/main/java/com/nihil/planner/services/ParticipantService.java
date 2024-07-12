@@ -30,7 +30,6 @@ public class ParticipantService{
         List<Participant> participantList =
                 participantsToInvite.stream().map((email) -> new Participant(email, trip)).toList();
         participantRepository.saveAll(participantList);
-        System.out.println(participantList.get(0).getId());
 
     }
 
